@@ -1,0 +1,43 @@
+[Scope]
+GroupName=com.canonical.Unity.Scope.MasterB
+UniqueName=/com/canonical/unity/scope/masterb
+Icon=/usr/share/unity/6/icon2.svg
+IsMaster=true
+RequiredMetadata=bid[s];a[s];b[y];
+OptionalMetadata=
+# Keywords is localized
+Keywords=misc;booze;
+Type=booze
+QueryPattern=^(
+Name=Sample Master Scope 2
+Description=Find even more stuff
+SearchHint=Search things
+Shortcut=w
+NoContentHint=Sorry to make you a sad panda, but there's nothing here.
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=fakedomain
+
+[Category cat1]
+Name=Category #1
+Icon=/usr/share/unity/category1_icon.svg
+DedupField=uri
+
+[Category cat2]
+Name=Category #2
+Icon=/usr/share/unity/category2_icon.svg
+Renderer=list
+ContentType=music
+SortField=title
+
+[Filter genre]
+Name=Genre
+Type=check-options
+OptionIDs=bluez;pop;jazz;electro;
+OptionNames=Bluez;Pop;Jazz;Electro;
+
+[Filter decade]
+Name=Decade
+Type=multi-range
+OptionIDs=70;80;90;
+OptionNames=70s;80s;90s;

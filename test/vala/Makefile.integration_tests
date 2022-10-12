@@ -1,0 +1,141 @@
+if ENABLE_INTEGRATION_TESTS
+
+check_PROGRAMS += \
+  test-launcher-integration \
+  test-sound-menu \
+  test-mpris-backend-client \
+  test-mpris-backend-server \
+  test-mpris-backend-prop-updates-client \
+  test-mpris-backend-prop-updates-server
+
+TEST_PROGS += \
+  test-lens-scope-interactions \
+  test-launcher-integration \
+  test-sound-menu \
+  test-mpris-backend \
+  test-mpris-backend-prop-updates
+
+BUILT_SOURCES += \
+  test-launcher-integration.vala.stamp \
+  test-sound-menu.vala.stamp \
+  test-mpris-backend-client.vala.stamp \
+  test-mpris-backend-server.vala.stamp \
+  test-mpris-backend-prop-updates-client.vala.stamp \
+  test-mpris-backend-prop-updates-server.vala.stamp
+
+endif
+
+DBUS_RUNNER=dbus-test-runner --dbus-config /usr/share/dbus-test-runner/session.conf
+
+#########################################
+##  test-lens-scope-interactions
+#########################################
+test-lens-scope-interactions: test-lens test-remote-scope Makefile.am Makefile.integration_tests
+	@echo "#!/bin/sh" > $@
+	@echo $(DBUS_RUNNER) --task ./test-lens -p --with-remote-scope --task-name Lens --task ./test-remote-scope --task-name Scope >> $@
+	@chmod +x $@
+
+#########################################
+##  test-launcher-integration
+#########################################
+test_launcher_integration_VALASOURCES = \
+  test-launcher-integration.vala
+nodist_test_launcher_integration_SOURCES = \
+  $(test_launcher_integration_VALASOURCES:.vala=.c)
+
+test_launcher_integration_LDADD = $(test_libs)
+
+#########################################
+##  test-sound-menu
+#########################################
+test_sound_menu_VALASOURCES = \
+  test-sound-menu.vala
+nodist_test_sound_menu_SOURCES = \
+  $(test_sound_menu_VALASOURCES:.vala=.c)
+
+test_sound_menu_LDADD = $(test_libs)
+
+#########################################
+##  test-mpris-backend-client
+#########################################
+test_mpris_backend_client_VALASOURCES = \
+  test-mpris-backend-client.vala
+nodist_test_mpris_backend_client_SOURCES = \
+  $(test_mpris_backend_client_VALASOURCES:.vala=.c)
+
+test_mpris_backend_client_LDADD = $(test_libs)
+
+########################################
+#  test-mpris-backend-server
+########################################
+test_mpris_backend_server_VALASOURCES = \
+  test-mpris-backend-server.vala
+nodist_test_mpris_backend_server_SOURCES = \
+  $(test_mpris_backend_server_VALASOURCES:.vala=.c)
+
+test_mpris_backend_server_LDADD = $(test_libs)
+
+test-mpris-backend: test-mpris-backend-server test-mpris-backend-client Makefile.am Makefile.integration_tests
+	@echo "#!/bin/sh" > test-mpris-backend
+	@echo $(DBUS_RUNNER) --task ./test-mpris-backend-server --task-name Server --ignore-return >> test-mpris-backend --task ./test-mpris-backend-client --task-name Client
+	@chmod +x test-mpris-backend
+
+#########################################
+##  test-mpris-backend-prop-updates-client
+#########################################
+test_mpris_backend_prop_updates_client_VALASOURCES = \
+  test-mpris-backend-prop-updates-client.vala
+nodist_test_mpris_backend_prop_updates_client_SOURCES = \
+  $(test_mpris_backend_prop_updates_client_VALASOURCES:.vala=.c)
+
+test_mpris_backend_prop_updates_client_LDADD = $(test_libs)
+
+########################################
+#  test-mpris-backend-prop-updates-server
+########################################
+test_mpris_backend_prop_updates_server_VALASOURCES = \
+  test-mpris-backend-prop-updates-server.vala
+nodist_test_mpris_backend_prop_updates_server_SOURCES = \
+  $(test_mpris_backend_prop_updates_server_VALASOURCES:.vala=.c)
+
+test_mpris_backend_prop_updates_server_LDADD = $(test_libs)
+
+test-mpris-backend-prop-updates: test-mpris-backend-prop-updates-server test-mpris-backend-prop-updates-client Makefile.am Makefile.integration_tests
+	@echo "#!/bin/sh" > test-mpris-backend-prop-updates
+	@echo $(DBUS_RUNNER) --task ./test-mpris-backend-prop-updates-server --task-name Server --ignore-return >> test-mpris-backend-prop-updates --task ./test-mpris-backend-prop-updates-client --task-name Client
+	@chmod +x test-mpris-backend-prop-updates
+
+EXTRA_DIST += \
+  $(test_launcher_integration_VALASOURCES) \
+  $(test_sound_menu_VALASOURCES) \
+  $(test_mpris_backend_client_VALASOURCES) \
+  $(test_mpris_backend_server_VALASOURCES) \
+  $(test_mpris_backend_prop_updates_client_VALASOURCES) \
+  $(test_mpris_backend_prop_updates_server_VALASOURCES)
+
+########################################
+#          valac compilation           #
+########################################
+test-launcher-integration.vala.stamp: $(test_launcher_integration_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@
+
+test-sound-menu.vala.stamp: $(test_sound_menu_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@
+
+test-mpris-backend-client.vala.stamp: $(test_mpris_backend_client_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@
+
+test-mpris-backend-server.vala.stamp: $(test_mpris_backend_server_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@
+
+test-mpris-backend-prop-updates-client.vala.stamp: $(test_mpris_backend_prop_updates_client_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@
+
+test-mpris-backend-prop-updates-server.vala.stamp: $(test_mpris_backend_prop_updates_server_VALASOURCES)
+	$(AM_V_GEN)$(VALAC) -C $(AM_VALAFLAGS) $(VALAFLAGS) $^
+	@touch $@

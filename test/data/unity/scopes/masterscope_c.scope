@@ -1,0 +1,20 @@
+[Scope]
+GroupName=com.canonical.Unity.Scope.MasterC
+UniqueName=/com/canonical/unity/scope/masterc
+Icon=/usr/share/unity/6/icon2.svg
+IsMaster=true
+# Keywords is localized
+Type=booze
+Name=Sample Master Scope 3
+Description=Finds almost everything
+SearchHint=Search things
+NoContentHint=Sorry to make you a sad panda, but there's nothing here.
+Subscopes=test_masterscope.scope;
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=fakedomain
+
+[Category cat1]
+Name=Category #1
+Icon=/usr/share/unity/category1_icon.svg
+DedupField=uri

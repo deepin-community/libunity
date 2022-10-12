@@ -1,0 +1,11 @@
+[Scope]
+DBusName=com.canonical.Unity.Scope.Test
+DBusPath=/com/canonical/unity/scope/childscope_3
+Icon=/usr/share/unity/6/icon1.svg
+RequiredMetadata=required_string[s];required_int[i];
+GlobalSearches=false
+Type=test
+Name=Child scope 3
+Description=Find various stuff
+SearchHint=Search stuff
+Module=childscope_3.so

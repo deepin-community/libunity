@@ -1,0 +1,10 @@
+[Scope Group]
+Timeout=30
+Scopes=test_masterscope/childscope_1.scope;test_masterscope/childscope_2.scope;test_masterscope/childscope_3.scope
+
+[test_masterscope/childscope_1.scope]
+key=value
+
+[test_masterscope/childscope_2.scope]
+
+[test_masterscope/childscope_3.scope]

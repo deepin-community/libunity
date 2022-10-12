@@ -1,0 +1,12 @@
+[Scope]
+GroupName=com.canonical.Unity.Scope.SubscopeCustom
+UniqueName=/com/canonical/unity/scope/subscope-custom
+Icon=/usr/share/unity/icon-sub.svg
+RequiredMetadata=bid[s];
+OptionalMetadata=
+Keywords=misc;
+Type=varia
+QueryPattern=^@
+Name=Sample custom subscope
+Description=Find various stuff subscope
+SearchHint=Search stuff subscope

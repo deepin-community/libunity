@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=libunity test app 1
+Comment=Test App 1 for testing non-exisiting apps
+Exec=/bin/true
+Icon=distributor-logo
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Core;
+StartupNotify=true
+

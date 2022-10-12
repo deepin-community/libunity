@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DPKG_GENSYMBOLS_CHECK_LEVEL = 4
+
+%:
+	dh $@ --with python3,autoreconf
+
+override_dh_autoreconf:
+	NOCONFIGURE=1 dh_autoreconf ./autogen.sh
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-headless-tests
+
+override_dh_install:
+	# install the python3 gir override file as well
+	PYTHON=python3 ./configure --prefix=/usr
+	cd bindings/python/ && DESTDIR=../../debian/tmp make install && cd ../..
+	dh_install -X.a -X.la -X.pyc -X.pyo
+	# rename the scope definition file (only if present, installed on arch: all)
+	mv debian/libunity-scopes-json-def-phone/usr/share/unity/client-scopes-phone.json debian/libunity-scopes-json-def-phone/usr/share/unity/client-scopes.json || true
+
+override_dh_missing:
+	dh_missing --fail-missing -X.a -X.la -X.pyc -X.pyo
+
+override_dh_python3:
+	dh_python3 debian/gir1.2-unity-7.0/usr/lib/python3
+
+override_dh_gencontrol:
+	dh_girepository
+	dh_gencontrol
+
+override_dh_makeshlibs:
+	dh_makeshlibs -plibunity-protocol-private0 -V
+	dh_makeshlibs --remaining-packages

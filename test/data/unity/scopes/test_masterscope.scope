@@ -1,0 +1,16 @@
+[Scope]
+GroupName=com.canonical.Unity.Scope.Test
+UniqueName=/com/canonical/Unity/MasterScope/Test
+Icon=/usr/share/unity/6/icon1.svg
+IsMaster=true
+RequiredMetadata=required_string[s];required_int[i];
+OptionalMetadata=optional_string[s];
+# Keywords is localized
+Keywords=misc;
+Type=test
+Name=Sample Master Scope
+Description=Find various stuff
+SearchHint=Master search hint
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=fakedomain

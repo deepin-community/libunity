@@ -1,0 +1,6 @@
+usr/include/unity/
+usr/lib/*/pkgconfig/*.pc
+usr/lib/*/libunity*.so
+usr/lib/*/libunity/libunity*.so
+usr/share/gir-1.0
+usr/share/vala/vapi/

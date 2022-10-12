@@ -1,0 +1,15 @@
+[Scope]
+DBusName=com.canonical.Unity.Scope.MasterA
+DBusPath=/com/canonical/unity/scope/mastera
+Icon=/usr/share/unity/6/icon1.svg
+IsMaster=true
+RequiredMetadata=some_id[s];foo[s];bar[y];
+OptionalMetadata=baz[u];
+# Keywords is localized
+Keywords=misc;
+Type=varia
+QueryPattern=
+Name=Sample Master Scope 1
+Description=Find various stuff
+SearchHint=Search stuff
+Shortcut=q

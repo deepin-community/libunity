@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/canonical/Unity/unity-tool">
+    <file compressed="true">unity-tool.ui</file>
+    <file compressed="true">dbus-scope-connect.ui</file>
+  </gresource>
+</gresources>

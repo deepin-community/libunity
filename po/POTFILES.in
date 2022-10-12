@@ -1,0 +1,4 @@
+[encoding: UTF-8]
+tools/dbus-scope-connect.ui
+tools/unity-tool.vala
+tools/unity-tool.ui

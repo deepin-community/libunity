@@ -1,0 +1,14 @@
+[Scope]
+GroupName=com.canonical.Unity.Scope.Subscope2
+UniqueName=/com/canonical/unity/scope/subscope2
+Icon=/usr/share/unity/6/icon-sub2.svg
+Keywords=pooh;
+Type=various
+QueryPattern=^~
+Name=Sample subscope 2
+Description=Find various stuff subscope 2
+SearchHint=Search stuff subscope 2
+Shortcut=u
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=fakedomain

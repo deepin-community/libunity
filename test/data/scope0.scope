@@ -1,0 +1,3 @@
+[Scope]
+DBusName=com.canonical.Unity.Scope0.Test
+DBusPath=/com/canonical/Unity/Scope0/Test
